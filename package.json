@@ -1,0 +1,24 @@
+{
+    "name": "content-store-be",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^3.0.1",
+        "prisma": "^5.0.0"
+    },
+    "dependencies": {
+        "@clerk/clerk-sdk-node": "^4.10.15",
+        "@prisma/client": "^5.0.0",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2"
+    }
+}
