@@ -2,7 +2,7 @@ import { createClerkClient } from "@clerk/clerk-sdk-node";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
-import { createStore } from "./controllers/store.js";
+import { createStore, getStore, getStoreById } from "./controllers/store.js";
 
 dotenv.config();
 
@@ -23,7 +23,9 @@ app.get("/", async (req, res) => {
     });
 });
 
+app.get("/store", getStore);
 app.post("/store", createStore);
+app.get("/store/:storeId", getStoreById);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
