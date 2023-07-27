@@ -3,6 +3,7 @@ import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
 import storeRouter from "./routes/storeRoutes.js";
+import billboardRouter from "./routes/billboardRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.get("/protected-endpoint", (req, res) => {
 });
 
 app.use("/store", storeRouter);
+app.use("/:storeId/billboards", billboardRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
