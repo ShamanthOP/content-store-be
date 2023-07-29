@@ -6,13 +6,14 @@ import {
     getStores,
     updateStore,
 } from "../controllers/store.js";
+import clerk from "../utils/clerk.js";
 
 const storeRouter = express.Router();
 
-storeRouter.get("/", getStores);
-storeRouter.post("/", createStore);
-storeRouter.patch("/:storeId", updateStore);
-storeRouter.delete("/:storeId", deleteStore);
+storeRouter.get("/", clerk.expressRequireAuth(), getStores);
+storeRouter.post("/", clerk.expressRequireAuth(), createStore);
+storeRouter.patch("/:storeId", clerk.expressRequireAuth(), updateStore);
+storeRouter.delete("/:storeId", clerk.expressRequireAuth(), deleteStore);
 storeRouter.get("/:storeId", getStoreById);
 
 export default storeRouter;

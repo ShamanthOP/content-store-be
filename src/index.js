@@ -1,4 +1,3 @@
-import { createClerkClient } from "@clerk/clerk-sdk-node";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import express from "express";
@@ -13,14 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-export const clerk = createClerkClient({
-    apiKey: process.env.CLERK_API_KEY,
-});
-
-app.use(clerk.expressRequireAuth());
-
-app.get("/protected-endpoint", (req, res) => {
-    res.json(req.auth);
+app.get("/public-endpoint", (req, res) => {
+    res.json({
+        hello: "message",
+    });
 });
 
 app.use("/store", storeRouter);

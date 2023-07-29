@@ -3,6 +3,10 @@ import prisma from "../utils/db.js";
 export const createBillboard = async (req, res) => {
     try {
         const { userId } = req.auth;
+        if (!userId) {
+            return res.status(401).send("Unauthenticated");
+        }
+
         const { label, imageUrl } = req.body;
         if (!label) {
             return res.status(400).send("Label is required");
@@ -69,6 +73,10 @@ export const getBillboards = async (req, res) => {
 export const updateBillboard = async (req, res) => {
     try {
         const { userId } = req.auth;
+        if (!userId) {
+            return res.status(401).send("Unauthenticated");
+        }
+
         const storeId = req.params.storeId;
         if (!storeId) {
             return res.status(400).send("Store id is required");
@@ -119,6 +127,10 @@ export const updateBillboard = async (req, res) => {
 export const deleteBillboard = async (req, res) => {
     try {
         const { userId } = req.auth;
+        if (!userId) {
+            return res.status(401).send("Unauthenticated");
+        }
+
         const storeId = req.params.storeId;
         if (!storeId) {
             return res.status(400).send("Store id is required");
@@ -129,7 +141,7 @@ export const deleteBillboard = async (req, res) => {
             return res.status(400).send("Billboard id is required");
         }
 
-        const storeByUserId = await prisma.billboard.findFirst({
+        const storeByUserId = await prisma.store.findFirst({
             where: {
                 id: storeId,
                 userId,
