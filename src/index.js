@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import express from "express";
 import storeRouter from "./routes/storeRoutes.js";
 import billboardRouter from "./routes/billboardRoutes.js";
+import customStoreRouter from "./routes/customStoreRouter.js";
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.get("/public-endpoint", (req, res) => {
 });
 
 app.use("/store", storeRouter);
-app.use("/:storeId/billboards", billboardRouter);
+app.use("/:storeId", customStoreRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
