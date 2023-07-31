@@ -1,7 +1,7 @@
 import express from "express";
 import clerk from "../utils/clerk.js";
 import {
-    craeteCategory,
+    createCategory,
     deleteCategory,
     getCategories,
     getCategoryById,
@@ -11,7 +11,7 @@ import {
 const categoryRouter = express.Router({ mergeParams: true });
 
 categoryRouter.get("/", getCategories);
-categoryRouter.post("/", clerk.expressRequireAuth(), craeteCategory);
+categoryRouter.post("/", clerk.expressRequireAuth(), createCategory);
 categoryRouter.patch(
     "/:categoryId",
     clerk.expressRequireAuth(),
