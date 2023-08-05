@@ -19,7 +19,7 @@ app.get("/public-endpoint", (req, res) => {
     });
 });
 
-app.use("/store", storeRouter);
+app.use("/", storeRouter);
 app.use("/:storeId", customStoreRouter);
 
 const PORT = process.env.PORT || 8080;
