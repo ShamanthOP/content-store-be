@@ -16,9 +16,7 @@ export const getProducts = async (req, res) => {
                 ? undefined
                 : searchParams.get("isFeatured") === "true";
         const isArchived =
-            searchParams.get("isArchived") === null
-                ? undefined
-                : searchParams.get("isArchived") === "true";
+            searchParams.get("isArchived") === null ? false : undefined;
 
         const products = await prisma.product.findMany({
             where: {

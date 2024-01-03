@@ -179,6 +179,9 @@ export const getCategoryById = async (req, res) => {
             where: {
                 id: categoryId,
             },
+            include: {
+                billboard: true,
+            },
         });
 
         return res.json(category);
